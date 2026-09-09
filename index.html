@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f1e8">
+  <meta name="description" content="FairShare makes group expenses feel simple, transparent, and fair.">
+  <title>FairShare | Group expenses, made fair</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="FairShare home">
+        <span class="brand-mark">+</span>
+        <span>fair<span>share</span></span>
+      </a>
+      <div class="workspace-switcher">
+        <span class="avatar avatar-coral">TC</span>
+        <span><small>WORKSPACE</small><strong>Tyler's crew</strong></span>
+        <span class="chevron">⌄</span>
+      </div>
+      <nav class="nav-links">
+        <a class="nav-item active" href="#dashboard"><span class="nav-icon">▦</span>Overview</a>
+        <a class="nav-item" href="#expenses"><span class="nav-icon">↗</span>Expenses <b id="expense-count">5</b></a>
+        <a class="nav-item" href="#settle"><span class="nav-icon">↔</span>Settle up</a>
+        <a class="nav-item" href="#replay"><span class="nav-icon">◌</span>Fairness Replay <i>new</i></a>
+      </nav>
+      <div class="sidebar-bottom">
+        <button class="side-link" id="reset-data"><span class="nav-icon">↺</span>Reset demo data</button>
+        <div class="user-card">
+          <span class="avatar avatar-navy">YO</span>
+          <span><strong>You</strong><small>Personal account</small></span>
+          <span class="more">•••</span>
+        </div>
+      </div>
+    </aside>
+
+    <main id="top" class="main-content">
+      <header class="topbar">
+        <div class="breadcrumb"><span>Workspaces</span><b>/</b><strong>Tyler's crew</strong></div>
+        <div class="top-actions">
+          <button class="icon-button" aria-label="Notifications" title="Notifications">♧<span class="notification-dot"></span></button>
+          <button class="help-button" aria-label="Help">?</button>
+          <button class="add-expense top-add" data-open-expense><span>+</span> Add expense</button>
+        </div>
+      </header>
+
+      <div class="page-wrap">
+        <section class="page-intro" id="dashboard">
+          <div>
+            <p class="eyebrow">SEPTEMBER 2026 · 5 MEMBERS</p>
+            <h1>Good spending,<br><em>less settling.</em></h1>
+            <p class="intro-copy">See the whole picture, keep the math light.</p>
+          </div>
+          <div class="balance-callout">
+            <span class="balance-orbit">$</span>
+            <div><span class="label">YOUR BALANCE</span><strong id="your-balance">+$42.50</strong><small>you are owed</small></div>
+          </div>
+        </section>
+
+        <section class="metrics-grid" aria-label="Group summary">
+          <article class="metric-card metric-total"><span class="metric-label">GROUP SPEND <span class="info">i</span></span><strong id="group-total">$286.40</strong><span class="metric-note">across <span id="expense-summary-count">5</span> expenses</span><div class="sparkline"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></article>
+          <article class="metric-card metric-owed"><span class="metric-label">YOU ARE OWED</span><strong id="owed-total">$42.50</strong><span class="metric-note">from 2 people</span><span class="metric-arrow">↗</span></article>
+          <article class="metric-card metric-owe"><span class="metric-label">YOU OWE</span><strong id="owe-total">$0.00</strong><span class="metric-note">all clear for now</span><span class="metric-check">✓</span></article>
+        </section>
+
+        <section class="content-grid">
+          <div class="activity-panel" id="expenses">
+            <div class="section-heading"><div><p class="eyebrow">RECENT ACTIVITY</p><h2>Where it went</h2></div><button class="text-button" id="filter-button">All activity <span>⌄</span></button></div>
+            <div class="expense-list" id="expense-list"></div>
+            <button class="view-all" id="view-all">View all expenses <span>→</span></button>
+          </div>
+          <div class="right-column">
+            <section class="settle-panel" id="settle">
+              <div class="section-heading"><div><p class="eyebrow">NEXT MOVE</p><h2>Settle up</h2></div><span class="settle-status">2 transfers</span></div>
+              <p class="settle-copy">A tidy little plan to square everyone up.</p>
+              <div class="transfer-list" id="transfer-list"></div>
+              <button class="outline-button" id="mark-settled">Mark all as settled <span>✓</span></button>
+            </section>
+            <section class="replay-panel" id="replay">
+              <div class="replay-top"><span class="replay-icon">◌</span><span class="new-label">NEW FEATURE</span></div>
+              <h2>Try the <em>what-if.</em></h2>
+              <p>Preview an expense before it lands. See who it helps, who it tips, and the cleanest way back to even.</p>
+              <button class="dark-button" data-open-replay>Open Fairness Replay <span>→</span></button>
+            </section>
+          </div>
+        </section>
+        <footer class="footer-note"><span class="privacy-lock">⌁</span> Your data stays in this browser <span class="footer-separator">·</span> FairShare is a private demo workspace</footer>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="expense-modal" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="expense-title">
+      <button class="modal-close" data-close-modal aria-label="Close">×</button>
+      <p class="eyebrow">NEW ENTRY</p><h2 id="expense-title">Add an expense</h2><p class="modal-subtitle">Keep it simple. FairShare will handle the math.</p>
+      <form id="expense-form">
+        <label>Description<input name="description" required placeholder="e.g. Dinner at Pomo" autocomplete="off"></label>
+        <div class="form-row"><label>Amount<input name="amount" required type="number" min="0.01" step="0.01" placeholder="0.00"></label><label>Paid by<select name="paidBy"><option value="You">You</option><option value="Maya">Maya</option><option value="Jon">Jon</option><option value="Priya">Priya</option><option value="Leo">Leo</option></select></label></div>
+        <fieldset><legend>Split equally between</legend><div class="people-checks" id="people-checks"></div></fieldset>
+        <button class="add-expense submit-button" type="submit">Add to the group <span>→</span></button>
+      </form>
+    </section>
+  </div>
+
+  <div class="modal-backdrop" id="replay-modal" hidden>
+    <section class="modal replay-modal" role="dialog" aria-modal="true" aria-labelledby="replay-title">
+      <button class="modal-close" data-close-modal aria-label="Close">×</button>
+      <div class="replay-top"><span class="replay-icon">◌</span><span class="new-label">FAIRNESS REPLAY</span></div>
+      <h2 id="replay-title">What if you add...</h2><p class="modal-subtitle">Play with a future expense. Nothing changes until you save it.</p>
+      <form id="replay-form">
+        <label>Description<input name="description" placeholder="e.g. Saturday surf lesson"></label>
+        <label>Amount <span class="range-value" id="range-value">$120</span><input id="replay-amount" name="amount" type="range" min="20" max="600" step="5" value="120"></label>
+        <fieldset><legend>Who joins?</legend><div class="people-checks replay-people" id="replay-people"></div></fieldset>
+        <div class="preview-box"><span class="eyebrow">LIVE PREVIEW</span><strong id="replay-result">Maya would owe you $24.00</strong><p id="replay-detail">This keeps the group within one clean transfer of even.</p></div>
+        <button class="dark-button submit-button" type="submit">Add this expense <span>→</span></button>
+      </form>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
